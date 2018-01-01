@@ -1,0 +1,50 @@
+<div class="container">
+  {{item.value}}
+  <div class="col-md-4">
+  <div class="form-group">
+      <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+      <div class="col-sm-10">
+        <input [(ngModel)]="item.name" type="text" id="nameField" class="form-control">
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="damageField" class="col-sm-2 control-label">Damage</label>
+    <div class="col-sm-10">
+      <input [(ngModel)]="item.damage" type="text" id="damageField" class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="critField" class="col-sm-2 control-label">Crit</label>
+    <div class="col-sm-10">
+      <input [(ngModel)]="item.crit" type="text" id="critField" class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="critField" class="col-sm-2 control-label">Range</label>
+    <select [(ngModel)]="item.range" class="form-control">
+        <option *ngFor="let range of ranges" [ngValue]="range.name">{{range.name}}</option>
+    </select>
+  </div>
+
+  <div class="input-group">
+    <select [(ngModel)]="selectedQuality" class="form-control">
+        <option *ngFor="let quality of qualityList" [ngValue]="quality">{{quality.name}}</option>
+    </select>
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="button" (click)="addQuality(selectedQuality)">Add</button>
+    </span>
+  </div>
+
+  <div *ngFor="let quality of qualities; let i = index">
+    <div class="input-group">
+      <span [ngClass]="{'negative' : quality.cost < 0,'positive' : quality.cost > 0}" class="input-group-addon" id="basic-addon1" style="width:40%">
+        {{quality?.name}}
+      </span>
+      <input *ngIf="!quality.flag" [(ngModel)]="quality.value" (change)="calculateCost()" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+      <span class="input-group-btn">
+          <button class="btn btn-danger" type="button" (click)="deleteQuality(i)"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
+      </span>
+    </div>
+  </div>
+</div>
+</div>
