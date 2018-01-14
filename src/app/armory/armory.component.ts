@@ -25,6 +25,10 @@ export class ArmoryComponent implements OnInit {
     this.sortWeapons();
   }
 
+  createWeapon() {
+    this.newWeapon = new Item();
+  }
+
   sortWeapons() {
     this.weapons = this.weapons.sort(function(a, b) {
       if (a.value > b.value){
@@ -37,6 +41,10 @@ export class ArmoryComponent implements OnInit {
       // names must be equal
       return 0;
     });
+  }
+
+  editWeapon(weapon: Item){
+    this.newWeapon = weapon;
   }
 
 }

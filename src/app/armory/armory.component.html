@@ -3,8 +3,11 @@
 <div class="col-lg-4">
   <app-weapon [item]="newWeapon"></app-weapon>
   <hr/>
-  <div class="center-block">
+  <div>
     <button class="btn btn-default" type="submit" (click)="addWeapon()">Add Weapon</button>
+  </div>
+  <div>
+    <button class="btn btn-default" type="submit" (click)="createWeapon()">New Weapon</button>
   </div>
 </div>
 <div class="col-lg-8">
@@ -20,6 +23,7 @@
         <th>Price</th>
         <th>Rarity</th>
         <th>Special</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -37,6 +41,11 @@
             <span>{{quality.name}} </span>
             <span *ngIf="!quality.flag">{{quality.value}}</span>
           </span>
+        </td>
+        <td>
+          <button type="button" class="btn btn-xs" (click)="editWeapon(weapon)">
+              <span class="glyphicon glyphicon-pencil"></span>&nbsp;
+          </button>
         </td>
       </tr>
     </tbody>
