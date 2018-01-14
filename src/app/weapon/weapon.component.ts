@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Item } from 'app/item';
 import { Quality } from 'app/quality';
 import { Data } from 'app/data';
@@ -9,7 +9,7 @@ import { Data } from 'app/data';
   styleUrls: ['./weapon.component.css']
 })
 export class WeaponComponent implements OnInit {
-  item: Item;
+  @Input() item: Item;
   qualities: Array<Quality>;
   qualityList: Array<Quality>;
 
@@ -18,37 +18,21 @@ export class WeaponComponent implements OnInit {
   error: String;
 
   ranges: any;
+  skills: any;
   constructor() { }
 
   ngOnInit() {
-    this.item = new Item();
-    this.item.name = "Rifle";
-    this.item.value = 0;
+    if (!this.item) {
+      this.item = new Item();
+      this.item.name = "Rifle";
+      this.item.value = 0;
+    }
 
-    this.qualities = new Array();
+    this.item.qualities = new Array();
 
     this.qualityList = Data.qualities;
     this.ranges = Data.ranges;
-  }
-
-  addQuality(quality) {
-    if (this.qualities.indexOf(quality) === -1){
-      this.qualities.push(quality);
-    } else {
-      this.error = "Quality already exists";
-    }    
-  }
-
-  deleteQuality(index) {
-    this.qualities.splice(index, 1);
-  }
-
-  calculateCost() {
-    var totalCost = 0;
-    this.qualities.forEach(function(quality) {
-      totalCost += quality.cost * quality.value
-    });
-    this.item.value = totalCost + this.item.getCost();
+    this.skills = Data.skills;
   }
 
 }

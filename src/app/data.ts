@@ -2,14 +2,27 @@ import { Quality } from "app/quality";
 
 export class Data {
     static qualities = [
-        new Quality("Accurate", 1, false, 100),
+        new Quality("Accurate", null, false, 50),
+        new Quality("Disorient", null, false, 50),
+        new Quality("Stun", null, false, 50),
+        new Quality("Blast", null, false, 25),
         new Quality("Vicious", null, false, 100),
-        new Quality("Inaccurate", null, false, -100),
+        new Quality("Burn", null, false, 200),
+        new Quality("Ensnare", null, false, 200),
+        new Quality("Linked", null, false, 200),
+        new Quality("Pierce", null, false, 0), //Calculated with damage
+        new Quality("Breach", null, false, 2500),
+        new Quality("Concussive", null, false, 1000),
+        new Quality("Guided", null, false, 250),
+        new Quality("Limited Ammo", null, false, -75),
+        new Quality("Inaccurate", null, false, -50),
+        new Quality("Prepare", null, false, -75),
         new Quality("Slow Firing", null, false, -100),
         new Quality("Unwieldy", null, false, -100),
         new Quality("Cumbersome", null, false, -100),
-        new Quality("Reinforced", 1, true, -100),
-        new Quality("Superior", 1, true, -100)
+        new Quality("Reinforced", 1, true, 250),
+        new Quality("Superior", 1, true, 100),
+        new Quality("Inferior", 1, true, -100)
     ]
 
     static ranges = [
@@ -34,5 +47,15 @@ export class Data {
         {range: {min:8,max:9}, cost: 500},
         {range: {min:10,max:12}, cost: 1000},
         {range: {min:13,max:999}, cost: 3000}
+    ]
+
+    static skills = [
+        "Melee",
+        "Melee [Light]",
+        "Melee [Heavy]",
+        "Ranged",
+        "Ranged [Light]",
+        "Ranged [Heavy]",
+        "Gunnery"
     ]
 }

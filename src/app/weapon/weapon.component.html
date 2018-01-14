@@ -1,50 +1,77 @@
-<div class="container">
-  {{item.value}}
-  <div class="col-md-4">
-  <div class="form-group">
-      <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
-      <div class="col-sm-10">
-        <input [(ngModel)]="item.name" type="text" id="nameField" class="form-control">
-      </div>
-  </div>
-  <div class="form-group">
-    <label for="damageField" class="col-sm-2 control-label">Damage</label>
-    <div class="col-sm-10">
-      <input [(ngModel)]="item.damage" type="text" id="damageField" class="form-control">
+<div class="form-group spacing">
+    <label for="nameField" class="control-label">Name</label>
+    <div>
+      <input [(ngModel)]="item.name" type="text" id="nameField" class="form-control">
     </div>
+</div>
+<div class="form-group spacing">
+  <label for="valueField" class="control-label">Value</label>
+  <div>
+    <input [(ngModel)]="item.value" type="text" id="valueField" class="form-control" disabled>
   </div>
-  <div class="form-group">
-    <label for="critField" class="col-sm-2 control-label">Crit</label>
-    <div class="col-sm-10">
-      <input [(ngModel)]="item.crit" type="text" id="critField" class="form-control">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="critField" class="col-sm-2 control-label">Range</label>
-    <select [(ngModel)]="item.range" class="form-control">
-        <option *ngFor="let range of ranges" [ngValue]="range.name">{{range.name}}</option>
+</div>
+<div class="form-group spacing">
+  <label for="skillField" class=" control-label">Skill</label>
+  <div>
+    <select [(ngModel)]="item.skill" class="form-control" id="skillField" (change)="item.calcValue()">
+        <option *ngFor="let skill of skills" [ngValue]="skill">{{skill}}</option>
     </select>
   </div>
-
-  <div class="input-group">
-    <select [(ngModel)]="selectedQuality" class="form-control">
-        <option *ngFor="let quality of qualityList" [ngValue]="quality">{{quality.name}}</option>
-    </select>
-    <span class="input-group-btn">
-      <button class="btn btn-default" type="button" (click)="addQuality(selectedQuality)">Add</button>
-    </span>
+</div>
+<div class="row">
+  <div class="form-group spacing col-md-6">
+    <label for="damageField" class="control-label">Damage</label>
+    <div>
+      <input [(ngModel)]="item.damage" type="text" id="damageField" class="form-control" (change)="item.calcValue()">
+    </div>
   </div>
-
-  <div *ngFor="let quality of qualities; let i = index">
-    <div class="input-group">
-      <span [ngClass]="{'negative' : quality.cost < 0,'positive' : quality.cost > 0}" class="input-group-addon" id="basic-addon1" style="width:40%">
-        {{quality?.name}}
-      </span>
-      <input *ngIf="!quality.flag" [(ngModel)]="quality.value" (change)="calculateCost()" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-      <span class="input-group-btn">
-          <button class="btn btn-danger" type="button" (click)="deleteQuality(i)"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
-      </span>
+  <div class="form-group spacing col-md-6">
+    <label for="critField" class="control-label">Crit</label>
+    <div>
+      <input [(ngModel)]="item.crit" type="text" id="critField" class="form-control" (change)="item.calcValue()">
     </div>
   </div>
 </div>
+<div class="form-group spacing">
+  <label for="rangeField" class=" control-label">Range</label>
+  <div>
+    <select [(ngModel)]="item.range" class="form-control" id="rangeField" (change)="item.calcValue()">
+        <option *ngFor="let range of ranges" [ngValue]="range.name">{{range.name}}</option>
+    </select>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group spacing col-md-6">
+    <label for="encumField" class="control-label">Encumbrance</label>
+    <div>
+      <input [(ngModel)]="item.encum" type="text" id="encumField" class="form-control" (change)="item.calcValue()">
+    </div>
+  </div>
+  <div class="form-group spacing col-md-6">
+      <label for="rarityField" class="control-label">Rarity</label>
+      <div>
+        <input [(ngModel)]="item.rarity" type="text" id="rarityField" class="form-control" (change)="item.calcValue()">
+      </div>
+  </div>
+</div>
+
+<div class="input-group">
+  <select [(ngModel)]="selectedQuality" class="form-control" placeholder="Select Quality">
+      <option *ngFor="let quality of qualityList" [ngValue]="quality">{{quality.name}}</option>
+  </select>
+  <span class="input-group-btn">
+    <button class="btn btn-default" type="button" (click)="item.addQuality(selectedQuality)">Add</button>
+  </span>
+</div>
+
+<div *ngFor="let quality of item.qualities; let i = index">
+  <div class="input-group">
+    <span [ngClass]="{'negative' : quality?.cost < 0,'positive' : quality?.cost > 0}" class="input-group-addon" id="basic-addon1" style="width:40%">
+      {{quality?.name}}
+    </span>
+    <input *ngIf="!quality.flag" [(ngModel)]="quality.value" (change)="item.calcValue()" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+    <span class="input-group-btn">
+        <button class="btn btn-danger" type="button" (click)="item.deleteQuality(i)"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
+    </span>
+  </div>
 </div>

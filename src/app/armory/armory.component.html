@@ -1,0 +1,46 @@
+<div class="container">
+<div class="row">
+<div class="col-lg-4">
+  <app-weapon [item]="newWeapon"></app-weapon>
+  <hr/>
+  <div class="center-block">
+    <button class="btn btn-default" type="submit" (click)="addWeapon()">Add Weapon</button>
+  </div>
+</div>
+<div class="col-lg-8">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Skill</th>
+        <th>Dam</th>
+        <th>Crit</th>
+        <th>Range</th>
+        <th>Encum</th>
+        <th>Price</th>
+        <th>Rarity</th>
+        <th>Special</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let weapon of weapons; let i = index">
+        <td>{{weapon.name}}</td>
+        <td>{{weapon.skill}}</td>
+        <td>{{weapon.damage}}</td>
+        <td>{{weapon.crit}}</td>
+        <td>{{weapon.range}}</td>
+        <td>{{weapon.encum}}</td>
+        <td>{{weapon.value}}</td>
+        <td>{{weapon.rarity}}</td>
+        <td>
+          <span *ngFor="let quality of weapon.qualities; let i = index">
+            <span>{{quality.name}} </span>
+            <span *ngIf="!quality.flag">{{quality.value}}</span>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>

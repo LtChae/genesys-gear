@@ -5,18 +5,18 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { WeaponComponent } from './weapon/weapon.component';
-import { AppRoutingModule } from './app-routing/app-routing.module';
+import { ArmoryComponent } from './armory/armory.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WeaponComponent
+    WeaponComponent,
+    ArmoryComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    AppRoutingModule
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
